@@ -265,20 +265,20 @@ class Dispatcher extends DispatcherCore
                     if (empty($route)) {
                         // get the path from requested URI, and remove "/" at the beginning
                         $short_link = ltrim(parse_url($uri, PHP_URL_PATH), '/');
-
-                        $route = $this->routes[$id_shop][$curr_lang_id]['product_rule'];
-                        if (!self::isProductLink($short_link, $route)) {
-                            $route = $this->routes[$id_shop][$curr_lang_id]['category_rule'];
-                            if (!self::isCategoryLink($short_link, $route)) {
-                                $route = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
-                                if (!self::isCmsLink($short_link, $route)) {
-                                    $route = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
-                                    if (!self::isCmsCategoryLink($short_link, $route)) {
-                                        $route = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
-                                        if (!self::isManufacturerLink($short_link, $route)) {
+						
+						$route = $this->routes[$id_shop][$curr_lang_id]['manufacturer_rule'];
+						if (!self::isManufacturerLink($short_link, $route)) {
+							$route = $this->routes[$id_shop][$curr_lang_id]['product_rule'];
+							if (!self::isProductLink($short_link, $route)) {
+								$route = $this->routes[$id_shop][$curr_lang_id]['category_rule'];
+								if (!self::isCategoryLink($short_link, $route)) {
+									$route = $this->routes[$id_shop][$curr_lang_id]['cms_rule'];
+									if (!self::isCmsLink($short_link, $route)) {
+										$route = $this->routes[$id_shop][$curr_lang_id]['cms_category_rule'];
+										if (!self::isCmsCategoryLink($short_link, $route)) {
                                             $route = $this->routes[$id_shop][$curr_lang_id]['supplier_rule'];
                                             if (!self::isSupplierLink($short_link, $route)) {
-                                                // no route found
+												// no route found
                                                 $route = array();
                                                 $controller = $this->controller_not_found;
                                             }
