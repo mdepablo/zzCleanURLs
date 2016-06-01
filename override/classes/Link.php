@@ -2,6 +2,11 @@
 
 class Link extends LinkCore
 {
+	public function getManufacturerLink($manufacturer, $alias = null, $id_lang = null, $id_shop = null, $relative_protocol = false)
+    {
+		return parent::getManufacturerLink($manufacturer, null, $id_lang, $id_shop, $relative_protocol);
+    }
+	
     /**
      * Create a link to a category
      *
